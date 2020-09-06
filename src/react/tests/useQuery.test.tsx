@@ -1819,4 +1819,29 @@ describe('useQuery', () => {
     await waitFor(() => rendered.getByText('data'))
     expect(queryFn).toHaveBeenCalledTimes(1)
   })
+
+  it('should refetch with query', async () => {
+    const key = queryKey()
+
+    function Page() {
+      const state = useQuery(key, (params: any) => {
+        console.log(params)
+      })
+
+
+      const { refetch } = state
+
+
+      React.useEffect(() => {
+        setTimeout(() => {
+          refetch({}, { queryKey: ['test', "data"], queryFnParamsFilter: undefined })
+        }, 10)
+      }, [refetch])
+      return null
+    }
+
+    render(<Page />)
+
+    return null
+  })
 })

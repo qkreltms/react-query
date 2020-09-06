@@ -217,7 +217,7 @@ export class QueryCache {
     })
   }
 
-  buildQuery<TResult, TError = unknown>(
+   buildQuery<TResult, TError = unknown>(
     userQueryKey: QueryKey,
     queryConfig?: QueryConfig<TResult, TError>
   ): Query<TResult, TError> {

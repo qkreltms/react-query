@@ -193,7 +193,7 @@ export interface QueryResultBase<TResult, TError = unknown> {
   isStale: boolean
   isSuccess: boolean
   isPreviousData: boolean
-  refetch: (options?: RefetchOptions) => Promise<TResult | undefined>
+  refetch: (options?: RefetchOptions, config?: QueryConfig<TResult, TError>) => Promise<TResult | undefined>
   status: QueryStatus
   updatedAt: number
 }

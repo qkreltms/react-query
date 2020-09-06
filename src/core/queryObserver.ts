@@ -1,5 +1,5 @@
 import { getStatusProps, isServer, isDocumentVisible } from './utils'
-import type { QueryResult, QueryObserverConfig } from './types'
+import type { QueryResult, QueryObserverConfig, QueryConfig } from './types'
 import type { Query, Action, FetchMoreOptions, RefetchOptions } from './query'
 import type { QueryCache } from './queryCache'
 
@@ -114,8 +114,8 @@ export class QueryObserver<TResult, TError> {
     return this.currentQuery.clear()
   }
 
-  async refetch(options?: RefetchOptions): Promise<TResult | undefined> {
-    return this.currentQuery.refetch(options, this.config)
+  async refetch(options?: RefetchOptions, config?: QueryConfig<TResult, TError>): Promise<TResult | undefined> {
+    return this.currentQuery.refetch(options, { ...this.config, ...config})
   }
 
   async fetchMore(
